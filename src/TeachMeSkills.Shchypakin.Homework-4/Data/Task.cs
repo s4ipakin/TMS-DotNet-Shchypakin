@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_4.Data
 {
     /// <summary>
-    /// TaskNoteClass.
+    /// TaskClass.
     /// </summary>
-    public class TaskNote
+    public class Task
     {
         private readonly string _id = Guid.NewGuid().ToString().ToUpper().Substring(0, 5);
         private readonly DateTime _dateTime = DateTime.Now;
@@ -31,13 +27,13 @@ namespace TeachMeSkills.Shchypakin.Homework_4.Data
         public TaskStatus Status => _status;
 
         /// <summary>
-        /// TaskName.
+        /// Name.
         /// </summary>
-        public string TaskName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// TaskDescription.
         /// </summary>
-        public string TaskDescription { get; set; }
+        public string Description { get; set; }
     }
 }
