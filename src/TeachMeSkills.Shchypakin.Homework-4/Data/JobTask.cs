@@ -5,11 +5,10 @@ namespace TeachMeSkills.Shchypakin.Homework_4.Data
     /// <summary>
     /// TaskClass.
     /// </summary>
-    public class Task
+    public class JobTask
     {
         private readonly string _id = Guid.NewGuid().ToString().ToUpper().Substring(0, 5);
         private readonly DateTime _dateTime = DateTime.Now;
-        private TaskStatus _status = TaskStatus.Backlog;
 
         /// <summary>
         /// Id.
@@ -24,7 +23,7 @@ namespace TeachMeSkills.Shchypakin.Homework_4.Data
         /// <summary>
         /// Status.
         /// </summary>
-        public TaskStatus Status => _status;
+        public virtual JobTaskStatus Status { get; set; } = JobTaskStatus.Backlog;
 
         /// <summary>
         /// Name.

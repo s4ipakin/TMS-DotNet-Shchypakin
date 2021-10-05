@@ -3,7 +3,7 @@
     /// <summary>
     /// TaskState.
     /// </summary>
-    public enum TaskStatus
+    public enum JobTaskStatus
     {
         /// <summary>
         /// Unknown.
