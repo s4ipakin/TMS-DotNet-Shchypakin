@@ -41,22 +41,18 @@ namespace TeachMeSkills.Shchypakin.Homework_4
         /// </summary>
         public virtual void SetJobTaskStatus(IEnumerable<JobTask> jobTasks)
         {
+            if (jobTasks == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "jobTasks");
+            }
+
             bool inputStop = false;
             while (!inputStop)
             {
-                Console.Write("Please enter todo Id: ");
+                Console.Write("Please enter job task Id: ");
                 var userInput = Console.ReadLine();
-               
-                jobTasks.Where(x => x.Id == userInput.ToUpperInvariant()).ToList().ForEach(x =>
-                {
-                    Console.WriteLine("Todo found! Enter new todo status..");
-                    Console.WriteLine("Availiable statuses: InProgress, Done, Canceled.");
-                    Console.Write("Enter status: ");
-                    var newStatus = Console.ReadLine();
-                    x.Status = Conversions.ConvertStatus(newStatus);
-                });
-
-                    inputStop = InputStop();
+                jobTasks.Where(x => x.Id == userInput.ToUpperInvariant()).ToList().ForEach(x => { SetStatus(x); });
+                inputStop = InputStop();
                 Console.WriteLine();
             }
         }
@@ -66,6 +62,11 @@ namespace TeachMeSkills.Shchypakin.Homework_4
         /// </summary>
         public virtual void ShowTaskInfo(IEnumerable<JobTask> jobTasks)
         {
+            if (jobTasks == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "jobTasks");
+            }
+
             Console.WriteLine("=======\n");
             jobTasks.ToList().ForEach(x => GetTaskInfo(x));           
         }
@@ -81,12 +82,21 @@ namespace TeachMeSkills.Shchypakin.Homework_4
             Console.WriteLine();
         }
 
-        private static bool InputStop()
+        private bool InputStop()
         {
             Console.Write("Stop? (Press Y/y): ");
             var key = Console.ReadKey().Key;
             Console.WriteLine();
             return key == ConsoleKey.Y;
+        }
+
+        private void SetStatus(JobTask task)
+        {
+            Console.WriteLine("Job task found! Enter new job task status..");
+            Console.WriteLine("Availiable statuses: InProgress, Done, Canceled.");
+            Console.Write("Enter status: ");
+            var newStatus = Console.ReadLine();
+            task.Status = Conversions.ConvertStatus(newStatus);
         }
 
 

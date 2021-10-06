@@ -9,13 +9,17 @@ namespace TeachMeSkills.Shchypakin.Homework_4
 {
     public class Conversions
     {
+        // <summary>
+        /// Convert status.
+        /// </summary>
+        /// <param name="status">Before converted.</param>
+        /// <returns>After converted.</returns>
         public static JobTaskStatus ConvertStatus(string status)
-        {
-            /// <summary>
-            /// Convert status.
-            /// </summary>
-            /// <param name="status">Before converted.</param>
-            /// <returns>After converted.</returns>
+        {          
+            if (status == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "status");
+            }
             return status switch
             {
                 "Backlog" => JobTaskStatus.Backlog,
