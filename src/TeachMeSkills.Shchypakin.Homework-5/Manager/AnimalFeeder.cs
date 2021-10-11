@@ -8,9 +8,12 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
 {
     public class AnimalFeeder
     {
+        /// <summary>
+        /// Feed animals
+        /// </summary>
         public void FeedAnimals()
         {
-            Console.WriteLine("It's time to feed the animals! Do you want to fead them all?");          
+            Console.WriteLine("It's time to feed the animals! Do you want to fead them all? (Y/N)");          
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.WriteLine();

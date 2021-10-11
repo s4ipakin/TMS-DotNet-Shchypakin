@@ -9,6 +9,10 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data
     public abstract class BirdBase : AnimalBase
     {
         public BirdBase(string name) : base(name) { }
+        /// <summary>
+        /// Feed a Bird
+        /// </summary>
+        /// <param name="food"></param>
         public override void Eat(Food food)
         {
             if (food == Food.Serial)

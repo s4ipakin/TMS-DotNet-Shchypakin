@@ -8,6 +8,10 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data
 {
     public abstract class AnimalBase
     {
+        /// <summary>
+        /// Animal constructor
+        /// </summary>
+        /// <param name="name"></param>
         public AnimalBase(string name)
         {
             Name = name;
@@ -24,9 +28,13 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data
         /// </summary>
         /// <param name="food"></param>
         public abstract void Eat(Food food);
-
+        /// <summary>
+        /// Move an animal
+        /// </summary>
         public abstract void Move();
-
+        /// <summary>
+        /// Make an animal make a sound
+        /// </summary>
         public abstract void MakeSound();
 
     }

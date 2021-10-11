@@ -8,9 +8,12 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
 {
     public class AnimalReleaser
     {
+        /// <summary>
+        /// Let the animals go
+        /// </summary>
         public void ReleaseAnimals()
         {
-            Console.WriteLine("Do you want to set the animals free?");
+            Console.WriteLine("Do you want to set the animals free? (Y/N)");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.WriteLine();
@@ -20,10 +23,9 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
                 var animalList = AnimalBase.AllAnimals.Values.ToList() ;
                 animalList.RemoveAll(FindUnescapable);
                 animalList.ForEach(x => Console.WriteLine($"{x.Name} is staying in the zoo"));
-            }
-
-            
+            }          
         }
+
         private bool FindUnescapable(AnimalBase animal)
         {
             return animal.GetType().GetInterfaces().Contains(typeof(IEscapable));
