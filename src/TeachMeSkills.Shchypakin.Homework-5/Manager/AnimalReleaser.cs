@@ -10,9 +10,11 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
     {
         public void ReleaseAnimals()
         {
-            Console.WriteLine("Do you want to set the animals them free?");
+            Console.WriteLine("Do you want to set the animals free?");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
+                Console.WriteLine();
+
                 AnimalBase.AllAnimals.Values.OfType<IEscapable>().ToList().ForEach(x => x.Escape());
                 
                 var animalList = AnimalBase.AllAnimals.Values.ToList() ;
