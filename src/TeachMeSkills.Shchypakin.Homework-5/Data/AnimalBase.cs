@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_5.Data
 {
-    public abstract class AnimalBase
+    public abstract class AnimalBase 
     {
+        private static List<AnimalBase> allAnimals = new List<AnimalBase>();
         /// <summary>
         /// Animal constructor
         /// </summary>
@@ -15,10 +16,10 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data
         public AnimalBase(string name)
         {
             Name = name;
-            AllAnimals.Add(Name, this);
+            allAnimals.Add(this);
             MakeSound();
         }
-        public static Dictionary<string, AnimalBase> AllAnimals { get; } = new Dictionary<string, AnimalBase>();
+        
         /// <summary>
         /// Name of the animal
         /// </summary>
@@ -36,6 +37,13 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data
         /// Make an animal make a sound
         /// </summary>
         public abstract void MakeSound();
-
+        /// <summary>
+        /// Get a collection of all instances of type AnimalBase
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<AnimalBase> GetAllObjects()
+        {
+            return allAnimals;
+        }
     }
 }

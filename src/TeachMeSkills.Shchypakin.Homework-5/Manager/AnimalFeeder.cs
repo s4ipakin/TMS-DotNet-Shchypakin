@@ -13,11 +13,13 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
         /// </summary>
         public void FeedAnimals()
         {
+            Dictionary<string, AnimalBase> allAnimals = new Dictionary<string, AnimalBase>();
+            AnimalBase.GetAllObjects().ToList().ForEach(x => { allAnimals.TryAdd(x.Name, x); });
             Console.WriteLine("It's time to feed the animals! Do you want to fead them all? (Y/N)");          
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.WriteLine();
-                Feed(AnimalBase.AllAnimals, FeedAll);
+                Feed(allAnimals, FeedAll);
             }
             else
             {
@@ -26,11 +28,11 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
                 {
                     Console.WriteLine();
                     Console.WriteLine("Choose an animal");
-                    AnimalBase.AllAnimals.Keys.ToList().ForEach(x => Console.WriteLine(x));
+                    allAnimals.Keys.ToList().ForEach(x => Console.WriteLine(x));
                     string userInput = Console.ReadLine();
-                    if (AnimalBase.AllAnimals.ContainsKey(userInput))
+                    if (allAnimals.ContainsKey(userInput))
                     {
-                        Feed(AnimalBase.AllAnimals, FeedOne, userInput);
+                        Feed(allAnimals, FeedOne, userInput);
                         isInputCorrect = true;
                     }
                     else

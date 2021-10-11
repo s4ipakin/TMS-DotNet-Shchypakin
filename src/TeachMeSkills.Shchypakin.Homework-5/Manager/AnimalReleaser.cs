@@ -13,14 +13,17 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
         /// </summary>
         public void ReleaseAnimals()
         {
+            Dictionary<string, AnimalBase> allAnimals = new Dictionary<string, AnimalBase>();
+            AnimalBase.GetAllObjects().ToList().ForEach(x => { allAnimals.TryAdd(x.Name, x); });
+
             Console.WriteLine("Do you want to set the animals free? (Y/N)");
             if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 Console.WriteLine();
 
-                AnimalBase.AllAnimals.Values.OfType<IEscapable>().ToList().ForEach(x => x.Escape());
+                allAnimals.Values.OfType<IEscapable>().ToList().ForEach(x => x.Escape());
                 
-                var animalList = AnimalBase.AllAnimals.Values.ToList() ;
+                var animalList = allAnimals.Values.ToList() ;
                 animalList.RemoveAll(FindUnescapable);
                 animalList.ForEach(x => Console.WriteLine($"{x.Name} is staying in the zoo"));
             }          
