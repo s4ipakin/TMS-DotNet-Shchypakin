@@ -43,6 +43,11 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
 
         private void Feed(Dictionary<string, AnimalBase> dictinary, Feeding feading, string name = "")
         {
+            if (dictinary == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "dictinary");
+            }
+
             bool isInputCorrect = false;
             do
             {
@@ -63,15 +68,33 @@ namespace TeachMeSkills.Shchypakin.Homework_5.Data.Manager
 
         private void FeedAll(Dictionary<string, AnimalBase> dictinary, Food food, string name)
         {
+            if (dictinary == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "dictinary");
+            }
+
             dictinary.Values.ToList().ForEach(x => x.Eat(food));
         }
 
         private void FeedOne(Dictionary<string, AnimalBase> dictinary, Food food, string name)
         {
-            
+            if(dictinary == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "dictinary");
+            }
+
+            if (name == null)
+            {
+                throw new System.ArgumentException("Parametr cannot be null", "name");
+            }
+
             if (dictinary.TryGetValue(name, out AnimalBase animal))
             {
                 animal.Eat(food);
+            }
+            else
+            {
+                throw new System.ArgumentException("There is no such key in the dictinary", "name");
             }
         }
     }
