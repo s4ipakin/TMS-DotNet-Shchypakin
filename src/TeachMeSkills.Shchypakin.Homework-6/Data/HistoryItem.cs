@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.Data
 {
-    class HistoryItem
+    internal class HistoryItem
     {
         public DateTime Time { get; set; }
 

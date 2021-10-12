@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Data;
 
@@ -37,7 +33,6 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
         private void ReadHistory()
         {
             int count = _balance.LastOperationId;
-            Thread.Sleep(10000); 
             if (count > 0)
             {
                 string address = @"D:\historyRecord" + count.ToString() + ".json";
@@ -69,12 +64,10 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
             _jsonHandler.SaveJson(_balancePath, _balance);
             string newPath = _historyPath + _balance.LastOperationId.ToString() + ".json";
             _jsonHandler.SaveJson(newPath, recordItem);
-
         }
 
         private Balance LoadBalance()
         {
-
             if (File.Exists(_balancePath))
             {
                 return _jsonHandler.LoadOneJson<Balance>(_balancePath);

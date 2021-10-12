@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Data;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.Manader.Json
@@ -19,8 +15,6 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader.Json
                 return JsonConvert.DeserializeObject<IEnumerable<T>>(json);
             }
         }
-
-        
 
         public void SaveJson(string filePath, object o)
         {

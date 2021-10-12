@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Data;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.Manader
@@ -10,11 +6,12 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
     public class AtmOperate : IAccaunt
     {
         public event Action<decimal, OperationType> OperationOccured;
+
         public event Action BalanceInfoRequired;
 
         public void PutMoney(decimal sum)
         {
-            if(sum < 0)
+            if (sum < 0)
             {
                 sum = sum * -1;
             }
