@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Data;
 
@@ -25,8 +26,18 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
 
         private void Accaunt_BalanceInfoRequired()
         {
-            //List<HistoryItem> records = new List<HistoryItem>();
+            GetHistoryAsync();
+        }
+
+        private async void GetHistoryAsync()
+        {
+            await Task.Run(() => ReadHistory());
+        }
+
+        private void ReadHistory()
+        {
             int count = _balance.LastOperationId;
+            Thread.Sleep(10000); 
             if (count > 0)
             {
                 string address = @"D:\historyRecord" + count.ToString() + ".json";
@@ -39,7 +50,7 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
                         Console.WriteLine($"Time: {recordItem.Time} ; Oparation type: {recordItem.Type} ; Sum: {recordItem.Sum} ; Current balance: {recordItem.AccauntBalance}");
                         count--;
                         address = @"D:\historyRecord" + count.ToString() + ".json";
-                    }                    
+                    }
                 }
             }
         }

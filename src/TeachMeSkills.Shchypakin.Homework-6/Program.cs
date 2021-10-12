@@ -19,8 +19,14 @@ namespace TeachMeSkills.Shchypakin.Homework_6
             atm.GetMoney(moneyPut);
             if (Console.ReadKey().Key == ConsoleKey.H)
             {
+                Console.WriteLine();
                 atm.CheckBalance();
             }
+            smoneyPut = Console.ReadLine();
+            Console.WriteLine(smoneyPut);
+            Console.ReadKey();
+            Console.ReadKey();
+
         }
     }
 }
