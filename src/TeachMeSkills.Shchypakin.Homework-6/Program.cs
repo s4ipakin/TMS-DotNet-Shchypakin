@@ -17,6 +17,10 @@ namespace TeachMeSkills.Shchypakin.Homework_6
             smoneyPut = Console.ReadLine();
             moneyPut = Convert.ToDecimal(smoneyPut);
             atm.GetMoney(moneyPut);
+            if (Console.ReadKey().Key == ConsoleKey.H)
+            {
+                atm.CheckBalance();
+            }
         }
     }
 }

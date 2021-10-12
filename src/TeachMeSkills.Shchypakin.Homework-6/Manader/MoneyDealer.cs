@@ -13,6 +13,7 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
         private IJson _jsonHandler;
         private Balance _balance;
         private string _balancePath = @"D:\balance.json";
+        private string _historyPath = @"D:\historyRecord";
 
         public MoneyDealer(IAccaunt accaunt, IJson jsonHandler)
         {
@@ -24,13 +25,40 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
 
         private void Accaunt_BalanceInfoRequired()
         {
-            throw new NotImplementedException();
+            //List<HistoryItem> records = new List<HistoryItem>();
+            int count = _balance.LastOperationId;
+            if (count > 0)
+            {
+                string address = @"D:\historyRecord" + count.ToString() + ".json";
+                HistoryItem recordItem = new HistoryItem();
+                while (count > 0)
+                {
+                    if (File.Exists(address))
+                    {
+                        recordItem = _jsonHandler.LoadOneJson<HistoryItem>(address);
+                        Console.WriteLine($"Time: {recordItem.Time} ; Oparation type: {recordItem.Type} ; Sum: {recordItem.Sum} ; Current balance: {recordItem.AccauntBalance}");
+                        count--;
+                        address = @"D:\historyRecord" + count.ToString() + ".json";
+                    }                    
+                }
+            }
         }
 
         private void Accaunt_OperationOccured(decimal sum, OperationType type)
         {
             _balance.CurrentBalance += sum;
+            _balance.LastOperationId++;
+            HistoryItem recordItem = new HistoryItem
+            {
+                Time = DateTime.Now,
+                Type = type,
+                Sum = sum,
+                AccauntBalance = _balance.CurrentBalance
+            };
             _jsonHandler.SaveJson(_balancePath, _balance);
+            string newPath = _historyPath + _balance.LastOperationId.ToString() + ".json";
+            _jsonHandler.SaveJson(newPath, recordItem);
+
         }
 
         private Balance LoadBalance()

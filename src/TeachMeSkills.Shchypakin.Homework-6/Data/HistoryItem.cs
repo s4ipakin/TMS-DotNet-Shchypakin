@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.Data
 {
-    class HystoryItem
+    class HistoryItem
     {
         public DateTime Time { get; set; }
 
