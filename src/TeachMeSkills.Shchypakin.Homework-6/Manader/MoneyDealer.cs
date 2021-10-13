@@ -14,9 +14,16 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader
 
         public MoneyDealer(IAccaunt accaunt, IJson jsonHandler)
         {
-            accaunt.OperationOccured += Accaunt_OperationOccured;
-            accaunt.BalanceInfoRequired += Accaunt_BalanceInfoRequired;
-            _jsonHandler = jsonHandler;
+            if (accaunt == null)
+            {
+                throw new ArgumentNullException(nameof(accaunt));
+            }
+            else
+            {
+                accaunt.OperationOccured += Accaunt_OperationOccured;
+                accaunt.BalanceInfoRequired += Accaunt_BalanceInfoRequired;
+            }
+            _jsonHandler = jsonHandler ?? throw new ArgumentNullException(nameof(jsonHandler));
             _balance = LoadBalance();
         }
 
