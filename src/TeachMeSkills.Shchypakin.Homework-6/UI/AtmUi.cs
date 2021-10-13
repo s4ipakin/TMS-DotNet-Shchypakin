@@ -43,8 +43,17 @@ namespace TeachMeSkills.Shchypakin.Homework_6.UI
                 Console.WriteLine("P: put money");
                 Console.WriteLine("H: get histoty");
                 Console.WriteLine("E: exit");
+                ConsoleKey userKey = Console.ReadKey().Key;
+                if (_keyOperations.ContainsKey(userKey))
+                {
+                    stop = _keyOperations[userKey].KeyOperation(_atm);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid key");
+                }
                 
-                stop =_keyOperations[Console.ReadKey().Key].KeyOperation(_atm);
+                
                 
             }
         }
