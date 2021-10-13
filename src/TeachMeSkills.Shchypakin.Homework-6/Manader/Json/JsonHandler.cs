@@ -7,6 +7,12 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader.Json
 {
     public class JsonHandler : IJson
     {
+        /// <summary>
+        /// Deserialise a collection from JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public IEnumerable<T> LoadJson<T>(string address)
         {
             using (StreamReader r = new StreamReader(address))
@@ -16,6 +22,11 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader.Json
             }
         }
 
+        /// <summary>
+        /// Serialise an object as JSON
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="o"></param>
         public void SaveJson(string filePath, object o)
         {
             JsonSerializer serializer = new JsonSerializer();
@@ -27,6 +38,12 @@ namespace TeachMeSkills.Shchypakin.Homework_6.Manader.Json
             }
         }
 
+        /// <summary>
+        /// Deserialise an object from JSON
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public T LoadOneJson<T>(string address)
         {
             using (StreamReader r = new StreamReader(address))

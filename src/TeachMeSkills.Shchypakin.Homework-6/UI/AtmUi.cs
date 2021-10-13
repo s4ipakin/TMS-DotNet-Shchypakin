@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Manader;
 using TeachMeSkills.Shchypakin.Homework_6.Manader.Json;
 using TeachMeSkills.Shchypakin.Homework_6.UI.KeyOperations;
@@ -33,10 +31,13 @@ namespace TeachMeSkills.Shchypakin.Homework_6.UI
             }
         }
 
+        /// <summary>
+        /// Run the atm app
+        /// </summary>
         public void RunAtm()
         {
             bool stop = false;
-            while(!stop)
+            while (!stop)
             {
                 Console.WriteLine("Choose a command:");
                 Console.WriteLine("W: withdraw money");
@@ -52,12 +53,7 @@ namespace TeachMeSkills.Shchypakin.Homework_6.UI
                 {
                     Console.WriteLine("Invalid key");
                 }
-                
-                
-                
             }
         }
-
-        
     }
 }

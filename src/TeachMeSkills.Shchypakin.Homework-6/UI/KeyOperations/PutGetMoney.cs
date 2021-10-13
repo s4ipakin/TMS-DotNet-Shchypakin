@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.UI.KeyOperations
 {
     public static class PutGetMoney
     {
+        /// <summary>
+        /// Universal method for putting or getting money
+        /// </summary>
+        /// <param name="operation"></param>
         public static void PutGet(Action<decimal> operation)
         {
             Console.WriteLine();

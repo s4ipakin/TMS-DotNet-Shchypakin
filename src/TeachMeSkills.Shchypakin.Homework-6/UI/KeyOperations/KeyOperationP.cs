@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Manader;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.UI.KeyOperations
@@ -11,6 +7,11 @@ namespace TeachMeSkills.Shchypakin.Homework_6.UI.KeyOperations
     {
         public override ConsoleKey Key => ConsoleKey.P;
 
+        /// <summary>
+        /// Execute operation for Key P
+        /// </summary>
+        /// <param name="atm"></param>
+        /// <returns></returns>
         public override bool KeyOperation(AtmOperate atm)
         {
             PutGetMoney.PutGet(atm.PutMoney);
