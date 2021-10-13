@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TeachMeSkills.Shchypakin.Homework_6.Manader;
 using TeachMeSkills.Shchypakin.Homework_6.Manader.Json;
+using TeachMeSkills.Shchypakin.Homework_6.UI.KeyOperations;
 
 namespace TeachMeSkills.Shchypakin.Homework_6.UI
 {
@@ -13,12 +15,22 @@ namespace TeachMeSkills.Shchypakin.Homework_6.UI
         private AtmOperate _atm;
         private JsonHandler _jsonHandler;
         private MoneyDealer _dealer;
+        private static Dictionary<ConsoleKey, KeyOperationBase> _keyOperations = new Dictionary<ConsoleKey, KeyOperationBase>();
 
         public AtmUi()
         {
             _atm = new AtmOperate();
             _jsonHandler = new JsonHandler();
             _dealer = new MoneyDealer(_atm, _jsonHandler);
+
+            var allKeyoperations = Assembly.GetAssembly(typeof(KeyOperationBase)).GetTypes()
+                .Where(t => typeof(KeyOperationBase).IsAssignableFrom(t) && t.IsAbstract == false);
+
+            foreach (var operation in allKeyoperations)
+            {
+                KeyOperationBase keyOperation = Activator.CreateInstance(operation) as KeyOperationBase;
+                _keyOperations.Add(keyOperation.Key, keyOperation);
+            }
         }
 
         public void RunAtm()
@@ -31,41 +43,12 @@ namespace TeachMeSkills.Shchypakin.Homework_6.UI
                 Console.WriteLine("P: put money");
                 Console.WriteLine("H: get histoty");
                 Console.WriteLine("E: exit");
-                switch(Console.ReadKey().Key)
-                {
-                    case ConsoleKey.P:
-                        PutGetMoney(_atm.PutMoney);
-                        break;
-
-                    case ConsoleKey.W:
-                        PutGetMoney(_atm.GetMoney);
-                        break;
-
-                    case ConsoleKey.H:
-                        Console.WriteLine();
-                        _atm.CheckBalance();
-                        break;
-                    case ConsoleKey.E:
-                        stop = true;
-                        break;
-                }
+                
+                stop =_keyOperations[Console.ReadKey().Key].KeyOperation(_atm);
+                
             }
         }
 
-        private void PutGetMoney(Action<decimal> operation)
-        {
-            Console.WriteLine();
-            Console.WriteLine("Input sum");
-            string userInput = Console.ReadLine();
-            if (decimal.TryParse(userInput, out decimal sum))
-            {
-                operation(sum);
-                Console.WriteLine("Operation successful");
-            }
-            else
-            {
-                Console.WriteLine("Invalid input");
-            }
-        }
+        
     }
 }
