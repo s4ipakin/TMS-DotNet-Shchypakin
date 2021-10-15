@@ -15,7 +15,7 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Operations
         public override bool KeyOperation(UiFitnessOperationController operationController)
         {
             WorkOutRoutine routine = new WorkOutRoutine();
-
+            Console.WriteLine();
             if (!InputCheck.TryTakeInput("Input number of minutes", out int minutes))
             {
                 return false;

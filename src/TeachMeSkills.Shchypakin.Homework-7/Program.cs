@@ -9,7 +9,7 @@ namespace TeachMeSkills.Shchypakin.Homework_7
         static void Main(string[] args)
         {
             UiFitnessOperationController operationController = new UiFitnessOperationController();
-            ConsoleUi<UiFitnessOperationController> Ui = new ConsoleUi<UiFitnessOperationController>(operationController);
+            ConsoleUi<UiFitnessOperationController> Ui = new ConsoleUi<UiFitnessOperationController>(operationController, AppHeadText.HeadText);
             Ui.Run();
         }
     }

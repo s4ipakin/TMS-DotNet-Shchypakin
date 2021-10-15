@@ -15,10 +15,12 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager
     {
         private static Dictionary<ConsoleKey, KeyOperationBase<T>> _keyOperations = new Dictionary<ConsoleKey, KeyOperationBase<T>>();
         private T _operationsController;
+        private string _headText;
 
-        public ConsoleUi(T operationsController)
+        public ConsoleUi(T operationsController, string headText)
         {
             _operationsController = operationsController;
+            _headText = headText;
             var allKeyoperations = Assembly.GetAssembly(typeof(KeyOperationBase<T>)).GetTypes()
                 .Where(t => typeof(KeyOperationBase<T>).IsAssignableFrom(t) && t.IsAbstract == false);
 
@@ -35,8 +37,8 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager
             
             while (!stop)
             {
-                Console.WriteLine("Input a Command");
-                Console.WriteLine("Add an exersise result: A");
+                Console.WriteLine();
+                Console.WriteLine(_headText);
                 ConsoleKey userKey = Console.ReadKey().Key;
                 if (_keyOperations.ContainsKey(userKey))
                 {
