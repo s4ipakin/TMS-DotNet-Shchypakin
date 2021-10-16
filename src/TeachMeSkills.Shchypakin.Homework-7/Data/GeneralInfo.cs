@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TeachMeSkills.Shchypakin.Homework_7.Data
+﻿namespace TeachMeSkills.Shchypakin.Homework_7.Data
 {
+    /// <summary>
+    /// Stores general information on Fitnes
+    /// </summary>
     public class GeneralInfo
     {
+        /// <summary>
+        /// The last ID of the added fitness routine
+        /// </summary>
         public int LastFitnessRoutineId { get; set; }
     }
 }

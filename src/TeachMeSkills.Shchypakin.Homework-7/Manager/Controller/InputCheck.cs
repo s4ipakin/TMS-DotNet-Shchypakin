@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Controller
 {
     public static class InputCheck
     {
+        /// <summary>
+        /// Tries to parse a user input into a number
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="prop"></param>
+        /// <returns></returns>
         public static bool TryTakeInput(string input, out int prop)
         {
             Console.WriteLine(input);
@@ -24,6 +26,12 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Controller
             }
         }
 
+        /// <summary>
+        /// Tries to parse a user input into a number
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="prop"></param>
+        /// <returns></returns>
         public static bool TryTakeInput(string input, out double prop)
         {
             Console.WriteLine(input);

@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using TeachMeSkills.Shchypakin.Homework_6.Data;
-using TeachMeSkills.Shchypakin.Homework_6.Manader.Json;
 using TeachMeSkills.Shchypakin.Homework_7.Data;
 using TeachMeSkills.Shchypakin.Homework_7.Manager.Controller;
 
 namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Operations
 {
+    // <summary>
+    /// Contains the method that corresponds to the key
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class KeyOperationA : KeyOperationBase<UiFitnessOperationController>
     {
+        /// <summary>
+        /// Gets the ConsoleKey that triggers the operation
+        /// </summary>
         public override ConsoleKey Key => ConsoleKey.A;
 
+        /// <summary>
+        /// The operation that is performed after pressing the key
+        /// </summary>
+        /// <param name="operationController"></param>
+        /// <returns></returns>
         public override bool KeyOperation(UiFitnessOperationController operationController)
         {
             WorkOutRoutine routine = new WorkOutRoutine();
@@ -53,10 +61,8 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Operations
                 routine.IsAnaerobic = false;
             }
 
-            operationController.SaveToJsonWithГniqueName(routine);
+            operationController.SaveToJsonWithUniqueName(routine);
             return false;
         }
-
-        
     }
 }

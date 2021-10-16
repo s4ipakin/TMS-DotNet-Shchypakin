@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using TeachMeSkills.Shchypakin.Homework_6.Data;
-using TeachMeSkills.Shchypakin.Homework_6.Manader.Json;
-using TeachMeSkills.Shchypakin.Homework_7.Manager.Controller;
 using TeachMeSkills.Shchypakin.Homework_7.Manager.Operations;
 
 namespace TeachMeSkills.Shchypakin.Homework_7.Manager
 {
+    /// <summary>
+    /// Runs the UI
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ConsoleUi<T>
     {
         private static Dictionary<ConsoleKey, KeyOperationBase<T>> _keyOperations = new Dictionary<ConsoleKey, KeyOperationBase<T>>();
@@ -31,10 +30,13 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager
             }
         }
 
+        /// <summary>
+        /// Run the UI
+        /// </summary>
         public void Run()
         {
             bool stop = false;
-            
+
             while (!stop)
             {
                 Console.WriteLine();
@@ -51,5 +53,4 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager
             }
         }
     }
-
 }
