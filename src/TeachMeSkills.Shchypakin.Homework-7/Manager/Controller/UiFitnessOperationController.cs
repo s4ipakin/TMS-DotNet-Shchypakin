@@ -90,7 +90,19 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Controller
         private void GetTotalWeightLoss(List<WorkOutRoutine> workOutRoutines)
         {
             double weightLoss = workOutRoutines.First().WeightAfter - workOutRoutines.Last().WeightAfter;
-            //Console.WriteLine();
+            var totalWeightLosses = workOutRoutines.Select((w, i) => new
+            {
+                WeightLoss = i > 0 ? workOutRoutines[i - 1].WeightAfter - w.WeightAfter : 0.0,
+                IsAnaerobic = w.IsAnaerobic
+            });
+
+            double anaerobicWeightLoss = totalWeightLosses.Where(x => x.IsAnaerobic == true)
+                .Select(x => x.WeightLoss).Average();
+            double aerobicWeightLoss = totalWeightLosses.Where(x => x.IsAnaerobic == false)
+                .Select(x => x.WeightLoss).Average();
+
+            Console.WriteLine($"Average weitght loss after an anaerobic exercise is {anaerobicWeightLoss}");
+            Console.WriteLine($"Average weitght loss after an aerobic exercise is {aerobicWeightLoss}");
             Console.WriteLine($"Total weight loss is {weightLoss}");
         }
 
