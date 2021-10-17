@@ -122,15 +122,15 @@ namespace TeachMeSkills.Shchypakin.Homework_7.Manager.Controller
                     if (File.Exists(address))
                     {
                         routine = jsonHandler.LoadOneJson<WorkOutRoutine>(address);
-                        address = startAddress + i.ToString() + ".json";
                         i++;
+                        address = startAddress + i.ToString() + ".json";                        
                         //Console.WriteLine(routine.WeightAfter.ToString());
                         yield return routine;
                     }
                     else
                     {
-                        address = startAddress + i.ToString() + ".json";
                         i++;
+                        address = startAddress + i.ToString() + ".json";                      
                     }
                 }
             }
