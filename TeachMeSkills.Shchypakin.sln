@@ -9,6 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachMeSkills.Shchypakin.Ho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachMeSkills.Shchypakin.Homework-3", "src\TeachMeSkills.Shchypakin.Homework-3\TeachMeSkills.Shchypakin.Homework-3.csproj", "{31222A42-D237-4636-840B-9A0652203B11}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachMeSkills.Shchypakin.Homework-4", "src\TeachMeSkills.Shchypakin.Homework-4\TeachMeSkills.Shchypakin.Homework-4.csproj", "{94F7BE5B-CC37-4DC3-8A27-86353FCD6C55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachMeSkills.Shchypakin.Homework-6", "src\TeachMeSkills.Shchypakin.Homework-6\TeachMeSkills.Shchypakin.Homework-6.csproj", "{4A3F28AD-4F1A-4036-BF92-68D3B52C5E2A}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachMeSkills.Shchypakin.Homework-5", "src\TeachMeSkills.Shchypakin.Homework-5\TeachMeSkills.Shchypakin.Homework-5.csproj", "{8B6259B1-A0D8-43A3-A819-3BC371984E94}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachMeSkills.Shchypakin.Homework-4", "src\TeachMeSkills.Shchypakin.Homework-4\TeachMeSkills.Shchypakin.Homework-4.csproj", "{94F7BE5B-CC37-4DC3-8A27-86353FCD6C55}"
 EndProject
@@ -38,6 +41,10 @@ Global
 		{94F7BE5B-CC37-4DC3-8A27-86353FCD6C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94F7BE5B-CC37-4DC3-8A27-86353FCD6C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94F7BE5B-CC37-4DC3-8A27-86353FCD6C55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A3F28AD-4F1A-4036-BF92-68D3B52C5E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A3F28AD-4F1A-4036-BF92-68D3B52C5E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A3F28AD-4F1A-4036-BF92-68D3B52C5E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A3F28AD-4F1A-4036-BF92-68D3B52C5E2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
