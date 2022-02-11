@@ -10,5 +10,7 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Entities
         public int Id { get; set; }
 
         public string Type { get; set; }
+
+        public ICollection<Membership> Memberships { get; set; }
     }
 }

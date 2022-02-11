@@ -13,5 +13,7 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Entities
 
         public string Comment { get; set; }
 
+        public ICollection<Membership> Memberships { get; set; }
+
     }
 }

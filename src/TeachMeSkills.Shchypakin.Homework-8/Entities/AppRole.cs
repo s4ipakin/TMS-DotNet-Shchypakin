@@ -6,17 +6,8 @@ using System.Threading.Tasks;
 
 namespace TeachMeSkills.Shchypakin.Homework_8.Entities
 {
-    public class Client : IdentityUser<int>
+    public class AppRole : IdentityRole<int>
     {
-
-        public string Fullname { get; set; }
-
-        public DateTime Birthday { get; set; }
-
-        public string Comment { get; set; }
-
-        public ICollection<Membership> Memberships { get; set; }
-
         public ICollection<AppUserRole> UserRoles { get; set; }
     }
 }
