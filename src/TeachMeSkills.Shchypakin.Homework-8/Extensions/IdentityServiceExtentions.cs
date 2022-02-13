@@ -21,7 +21,7 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Extensions
             services.AddIdentityCore<Client>(opt =>
             {
                 opt.Password.RequireNonAlphanumeric = false;
-                opt.SignIn.RequireConfirmedPhoneNumber = true;
+                //opt.SignIn.RequireConfirmedPhoneNumber = true;
 
             })
                 .AddRoles<AppRole>()

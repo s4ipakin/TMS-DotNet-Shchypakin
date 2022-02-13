@@ -14,6 +14,9 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Helpers
         {
             CreateMap<Client, MemberDto>();
             CreateMap<Membership, MembershipDto>();
+            CreateMap<MembershipSize, MembershipSizeDto>();
+            CreateMap<MembershipType, MembershipTypeDto>();
+            CreateMap<RegisterDto, Client>();
         }
     }
 }

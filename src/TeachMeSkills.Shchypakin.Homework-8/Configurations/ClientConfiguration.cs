@@ -28,6 +28,9 @@ namespace Masny.TimeTracker.Data.Configurations
             builder.Property(client => client.Birthday)
                 .HasColumnType(SqlConfiguration.SqlDateFormat);
 
+            builder.Property(client => client.LastVisit)
+                .HasColumnType(SqlConfiguration.SqlDateFormat);
+
             builder.Property(client => client.Email)
                 .HasMaxLength(SqlConfiguration.SqlMaxLengthShort);
 

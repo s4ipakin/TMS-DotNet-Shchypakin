@@ -10,8 +10,8 @@ using TeachMeSkills.Shchypakin.Homework_8.Data;
 namespace TeachMeSkills.Shchypakin.Homework_8.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220211141720_IdentityAdded")]
-    partial class IdentityAdded
+    [Migration("20220213100955_LastVisitToClient")]
+    partial class LastVisitToClient
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,6 +189,9 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(127)
                         .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastVisit")
+                        .HasColumnType("date");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");

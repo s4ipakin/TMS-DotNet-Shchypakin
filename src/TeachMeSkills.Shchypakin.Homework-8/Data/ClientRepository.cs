@@ -43,18 +43,32 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Data
 
         public async Task<MemberDto> GetMemberAsync(string clientname)
         {
-            return await _context.Users
+            var client = await _context.Users
                 .Where(x => x.Fullname == clientname)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
+
+            return client;
         }
 
         public async Task<IEnumerable<MemberDto>> GetMembersAsync()
         {
-            return await _context.Users
-                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            
+            
+            var clients = await _context.Users
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)              
                 .ToListAsync();
 
+            var clientsToSend = clients.Select(c => new MemberDto
+            {
+                FullName = c.FullName,
+                Phone = c.Phone,
+                Birthday = c.Birthday,
+                Comment = c.Comment,
+                Memberships = c.Memberships.Where(m => m.IsActive == true).ToList()
+            });
+
+            return clientsToSend;
         }
 
         public async Task<bool> SaveAllAsync()

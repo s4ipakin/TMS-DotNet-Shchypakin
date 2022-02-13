@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TeachMeSkills.Shchypakin.Homework_8.Data;
 
 namespace TeachMeSkills.Shchypakin.Homework_8.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220211145443_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,9 +189,6 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(127)
                         .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastVisit")
-                        .HasColumnType("date");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");

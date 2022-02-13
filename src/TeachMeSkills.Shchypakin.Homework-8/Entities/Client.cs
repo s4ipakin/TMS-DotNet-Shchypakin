@@ -13,6 +13,8 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Entities
 
         public DateTime Birthday { get; set; }
 
+        public DateTime LastVisit { get; set; }
+
         public string Comment { get; set; }
 
         public ICollection<Membership> Memberships { get; set; }

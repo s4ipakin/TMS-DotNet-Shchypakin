@@ -8,6 +8,6 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Interfaces
 {
     public interface ITokenService
     {
-        string CreateToken(Client client);
+        Task<string> CreateToken(Client client);
     }
 }

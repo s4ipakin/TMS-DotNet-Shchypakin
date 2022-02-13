@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,51 +16,84 @@ namespace TeachMeSkills.Shchypakin.Homework_8.Controllers
 {
     public class AccountController : BaseApiController
     {
-        private readonly DataContext _context;
+        private readonly UserManager<Client> _userManager;
+        private readonly SignInManager<Client> _signInManager;
         private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
+        private readonly RoleManager<AppRole> _roleManager;
+        private readonly DataContext _dataContext;
 
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(UserManager<Client> userManager, SignInManager<Client> signInManager, 
+            ITokenService tokenService, IMapper mapper, 
+            RoleManager<AppRole> roleManager, DataContext dataContext)
         {
-            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
             _tokenService = tokenService;
+            _mapper = mapper;
+            _roleManager = roleManager;
+            _dataContext = dataContext;
+        }
+
+        [HttpPost("seed")]
+        public async Task<ActionResult> SeedData()
+        {
+            await Seed.SeedData(_userManager, _dataContext, _roleManager);
+            return Ok();
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<ClientDto>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await ClientExist(registerDto.ClientName)) return BadRequest("Username is taken");
+            if (await ClientExist(registerDto.Username)) return BadRequest("Username is taken");
 
-            using var hmac = new HMACSHA512();
+            var client = _mapper.Map<Client>(registerDto);
 
-            var client = new Client();
+            client.UserName = registerDto.Username.ToLower();
 
-            _context.Add(client);
-            await _context.SaveChangesAsync();
-            return new ClientDto
+            client.Fullname = registerDto.Username.ToLower();
+
+            var result = await _userManager.CreateAsync(client, registerDto.Password);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            var roleRequest = await _userManager.AddToRoleAsync(client, "Member");
+
+            if (!roleRequest.Succeeded) return BadRequest(result.Errors);
+
+            return new UserDto
             {
-                ClientName = registerDto.ClientName,
-                Token = _tokenService.CreateToken(client)
+                Username = client.UserName,
+
+                Token = await _tokenService.CreateToken(client)
             };
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<ClientDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var client = await _context.Users.SingleOrDefaultAsync(x => x.Fullname == loginDto.ClientName);
+            var user = await _userManager.Users
+                .Include(u => u.Memberships)
+                .SingleOrDefaultAsync(x => x.UserName == loginDto.ClientName.ToLower());
 
-            if (client == null) return Unauthorized("Invalid user name");
+            if (user == null) return Unauthorized("Invalid user name");
 
-            return new ClientDto
+            var result = await _signInManager
+                .CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+            if (!result.Succeeded) return Unauthorized();
+
+            return new UserDto
             {
-                ClientName = loginDto.ClientName,
-                Token = _tokenService.CreateToken(client)
+                Username = loginDto.ClientName,
+                Token = await _tokenService.CreateToken(user)
             };
         }
 
 
         private async Task<bool> ClientExist(string clientName)
         {
-            return await _context.Users.AnyAsync(x => x.Fullname == clientName.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.Fullname == clientName.ToLower());
         }
 
     }
